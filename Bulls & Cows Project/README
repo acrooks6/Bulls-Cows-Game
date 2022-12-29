@@ -1,0 +1,84 @@
+
+# Below is an example of playing a game of bulls and cows between clients
+
+Server:
+  Usage:
+    ./project1_server
+
+
+  Game play:
+    none
+
+  Log:
+./project1_server
+[SYS] Parent process for TCP communication.
+[TCP] Bulls and Cows game server started...
+[TCP] Socket has port: 49119
+[SYS] Child process forked
+[TCP] JOIN request recieved
+[UDP] Socket has port: 34869
+[UDP:34869] Gameplay server started:
+[TCP] Sent: JOIN GRANT 34869
+[UDP:34869] Secret Number: 1267
+[UDP:34869] A new game has started:
+[UDP:34869] Recieved: GUESS 1234
+[UDP:34869] Sent: RESPONSE 2A0B
+[UDP:34869] Recieved: GUESS 1264
+[UDP:34869] Sent: RESPONSE 3A0B
+[UDP:34869] Recieved: GUESS 1267
+[UDP:34869] New Secret Number: 1680
+[UDP:34869] Sent: RESPONSE Congratulations! You have won the game by guessing the secret number: 1267 The Game will now restart with a different secret number, type EXIT if you want to stop playing
+[UDP:34869] Recieved: GUESS 1234
+[UDP:34869] Sent: RESPONSE 1A0B
+[UDP:34869] Recieved: GUESS 1236
+[UDP:34869] Sent: RESPONSE 1A1B
+[UDP:34869] Recieved: GUESS 1630
+[UDP:34869] Sent: RESPONSE 3A0B
+[UDP:34869] Recieved: GUESS 1680
+[UDP:34869] New Secret Number: 7082
+[UDP:34869] Sent: RESPONSE Congratulations! You have won the game by guessing the secret number: 1680 The Game will now restart with a different secret number, type EXIT if you want to stop playing
+[UDP:34869] EXIT recieved, ending game
+[UDP:34869] Player has left the game
+[SYS] child process terminated
+
+Client:
+  Usage:
+    ./project1_client -p <tcp_port> -s <server_addr>
+
+  Game play:
+    - guess
+      GUESS <guess_number>
+    - exit
+      EXIT
+
+  Log:
+./project1_client -p 49119 -s localhost
+[TCP] Bulls and Cows client started...
+[TCP] Connecting to server: localhost:49119
+Connection Estabished
+[UDP] Guesses will be sent to: localhost at port:34869
+[GAM] Please start guessing!
+[CMD] GUESS 1234
+[UDP] Sent: GUESS 1234
+[UDP] Recieved: RESPONSE 2A0B
+[CMD] GUESS 1264
+[UDP] Sent: GUESS 1264
+[UDP] Recieved: RESPONSE 3A0B
+[CMD] GUESS 1267
+[UDP] Sent: GUESS 1267
+[UDP] Recieved: RESPONSE Congratulations! You have won the game by guessing the secret number: 1267 The Game will now restart with a different secret number, type EXIT if you want to stop playing
+[CMD] GUESS 1234
+[UDP] Sent: GUESS 1234
+[UDP] Recieved: RESPONSE 1A0B
+[CMD] GUESS 1236
+[UDP] Sent: GUESS 1236
+[UDP] Recieved: RESPONSE 1A1B
+[CMD] GUESS 1630
+[UDP] Sent: GUESS 1630
+[UDP] Recieved: RESPONSE 3A0B
+[CMD] GUESS 1680
+[UDP] Sent: GUESS 1680
+[UDP] Recieved: RESPONSE Congratulations! You have won the game by guessing the secret number: 1680 The Game will now restart with a different secret number, type EXIT if you want to stop playing
+[CMD] EXIT
+[UDP] Sent: EXIT
+[UDP] Recieved: EXIT GRANT Exit granted, goodbye
